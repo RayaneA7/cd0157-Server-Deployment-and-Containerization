@@ -35,6 +35,7 @@ phases:
       commands:
         - pip3 install -r requirements.txt 
         - python -m pytest test_main.py
+        - export REPOSITORY_URI=503763599459.dkr.ecr.us-east-2.amazonaws.com/simple-jwt-api-stack-ecrdockerrepository-oyhyfjisizmj
         - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
